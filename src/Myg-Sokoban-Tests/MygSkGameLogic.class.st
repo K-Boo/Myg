@@ -2,15 +2,16 @@
 This class contains tests
 "
 Class {
-	#name : #MygSkGameLogic,
-	#superclass : #TestCase,
+	#name : 'MygSkGameLogic',
+	#superclass : 'TestCase',
 	#instVars : [
 		'board'
 	],
-	#category : #'Myg-Sokoban-Tests'
+	#category : 'Myg-Sokoban-Tests',
+	#package : 'Myg-Sokoban-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 MygSkGameLogic >> setUp [
 
 	super setUp.
@@ -21,7 +22,7 @@ MygSkGameLogic >> setUp [
 			          fromPackage: MygSkBoard package) do: [ :each | each configured ]).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MygSkGameLogic >> testIsFinished [
 
 	self deny: board isFinished.
@@ -30,7 +31,7 @@ MygSkGameLogic >> testIsFinished [
 	self assert: board isFinished
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MygSkGameLogic >> testIsFinishedThenUnfinish [
 
 	self deny: board isFinished.
@@ -41,7 +42,7 @@ MygSkGameLogic >> testIsFinishedThenUnfinish [
 	self deny: board isFinished
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MygSkGameLogic >> testMoveSteps [
 
 	self deny: board isFinished.

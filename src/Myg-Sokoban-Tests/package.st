@@ -1,1 +1,1 @@
-Package { #name : #'Myg-Sokoban-Tests' }
+Package { #name : 'Myg-Sokoban-Tests' }

@@ -2,15 +2,16 @@
 This class contains tests
 "
 Class {
-	#name : #MygSkGameManagerTest,
-	#superclass : #TestCase,
+	#name : 'MygSkGameManagerTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'space'
 	],
-	#category : #'Myg-Sokoban-Tests'
+	#category : 'Myg-Sokoban-Tests',
+	#package : 'Myg-Sokoban-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 MygSkGameManagerTest >> ensureClose: aSpace [
 
 	self assert: (BlSpace pulseUntilEmptyTaskQueue: aSpace timeout: 200 milliSeconds).
@@ -20,14 +21,14 @@ MygSkGameManagerTest >> ensureClose: aSpace [
 	self assert: (BlSpace pulseUntilEmptyTaskQueue: aSpace timeout: 200 milliSeconds).
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MygSkGameManagerTest >> tearDown [
 
 	space ifNotNil: [ self ensureClose: space ].
 	super tearDown 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MygSkGameManagerTest >> testIsBoardReset [
 
 	| string manager boardElement |
@@ -46,7 +47,7 @@ MygSkGameManagerTest >> testIsBoardReset [
 	space := manager currentBoardElement space.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MygSkGameManagerTest >> testMoveCount [
 
 	| string manager boardElement |
@@ -68,7 +69,7 @@ MygSkGameManagerTest >> testMoveCount [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MygSkGameManagerTest >> testRegisterLevel [
 
 	| manager board string |
@@ -91,7 +92,7 @@ MygSkGameManagerTest >> testRegisterLevel [
 	space := manager currentBoardElement space.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MygSkGameManagerTest >> testRegisterLevelWithBetterMoveCount [
 
 	| manager board string registered |
@@ -132,7 +133,7 @@ MygSkGameManagerTest >> testRegisterLevelWithBetterMoveCount [
 	space := manager currentBoardElement space.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MygSkGameManagerTest >> testRegisterLevelWithWorseMoveCount [
 
 	| manager board string registered |

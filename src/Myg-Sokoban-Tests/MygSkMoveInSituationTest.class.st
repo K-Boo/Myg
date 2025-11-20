@@ -2,12 +2,13 @@
 This class contains tests
 "
 Class {
-	#name : #MygSkMoveInSituationTest,
-	#superclass : #TestCase,
-	#category : #'Myg-Sokoban-Tests'
+	#name : 'MygSkMoveInSituationTest',
+	#superclass : 'TestCase',
+	#category : 'Myg-Sokoban-Tests',
+	#package : 'Myg-Sokoban-Tests'
 }
 
-{ #category : #'tests - basic' }
+{ #category : 'tests - basic' }
 MygSkMoveInSituationTest >> testBasicMoveInformation [
 
 	| board position |
@@ -27,7 +28,7 @@ MygSkMoveInSituationTest >> testBasicMoveInformation [
 	self assert: board asciiString equals: '# @ $.#'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 MygSkMoveInSituationTest >> testBoxBumpingInBox [
 
 	| board box |
@@ -42,7 +43,7 @@ MygSkMoveInSituationTest >> testBoxBumpingInBox [
 	self assert: board asciiString equals: '#@$$ ..#'
 ]
 
-{ #category : #'tests - simple move' }
+{ #category : 'tests - simple move' }
 MygSkMoveInSituationTest >> testBoxBumpingInWall [
 
 	| board box |
@@ -57,7 +58,7 @@ MygSkMoveInSituationTest >> testBoxBumpingInWall [
 	self assert: board asciiString equals: '#@ .$#'
 ]
 
-{ #category : #'tests - simple move' }
+{ #category : 'tests - simple move' }
 MygSkMoveInSituationTest >> testBoxMovingOnGround [
 
 	| board box |
@@ -72,7 +73,7 @@ MygSkMoveInSituationTest >> testBoxMovingOnGround [
 	self assert: board asciiString equals: '#@ . $#'
 ]
 
-{ #category : #'tests - simple move' }
+{ #category : 'tests - simple move' }
 MygSkMoveInSituationTest >> testBoxMovingOnTarget [
 
 	| board box |
@@ -87,7 +88,7 @@ MygSkMoveInSituationTest >> testBoxMovingOnTarget [
 	self assert: board asciiString equals: '#@  * #'
 ]
 
-{ #category : #'tests - simple move' }
+{ #category : 'tests - simple move' }
 MygSkMoveInSituationTest >> testBoxMovingOnTargetAndRestore [
 
 	| board box |
@@ -105,7 +106,7 @@ MygSkMoveInSituationTest >> testBoxMovingOnTargetAndRestore [
 	self assert: board asciiString equals: '#@  .$#'
 ]
 
-{ #category : #'tests - simple move' }
+{ #category : 'tests - simple move' }
 MygSkMoveInSituationTest >> testPlayerBumpingInWall [
 
 	| board position player |
@@ -122,7 +123,7 @@ MygSkMoveInSituationTest >> testPlayerBumpingInWall [
 	self assert: board asciiString equals: '# @#'
 ]
 
-{ #category : #'tests - simple move' }
+{ #category : 'tests - simple move' }
 MygSkMoveInSituationTest >> testPlayerMovingOnGround [
 
 	| board position player |
@@ -144,7 +145,7 @@ MygSkMoveInSituationTest >> testPlayerMovingOnGround [
 	self assert: board asciiString equals: '# @#'
 ]
 
-{ #category : #'tests - simple move' }
+{ #category : 'tests - simple move' }
 MygSkMoveInSituationTest >> testPlayerMovingOnGroundRestoreCorrectlyGround [
 
 	| board |
@@ -158,7 +159,7 @@ MygSkMoveInSituationTest >> testPlayerMovingOnGroundRestoreCorrectlyGround [
 	self assert: board printString equals: '#  @ #'
 ]
 
-{ #category : #'tests - simple move' }
+{ #category : 'tests - simple move' }
 MygSkMoveInSituationTest >> testPlayerMovingOnTarget [
 
 	| board |
@@ -173,7 +174,7 @@ MygSkMoveInSituationTest >> testPlayerMovingOnTarget [
 	self assert: board printString equals: '# .@  $#'
 ]
 
-{ #category : #'tests - simple move' }
+{ #category : 'tests - simple move' }
 MygSkMoveInSituationTest >> testPlayerMovingTwoTimesOnGroundRestoreCorrectlyGround [
 
 	| board |
@@ -191,7 +192,7 @@ MygSkMoveInSituationTest >> testPlayerMovingTwoTimesOnGroundRestoreCorrectlyGrou
 	self assert: board printString equals: '#  @#'
 ]
 
-{ #category : #'tests - pushing box' }
+{ #category : 'tests - pushing box' }
 MygSkMoveInSituationTest >> testPushingABoxAlreadyOnTarget [
 
 	| board position |
@@ -214,7 +215,7 @@ MygSkMoveInSituationTest >> testPushingABoxAlreadyOnTarget [
 	"Check that the board is updated, i.e., the player in the board should be at the player's position."
 ]
 
-{ #category : #'tests - pushing box' }
+{ #category : 'tests - pushing box' }
 MygSkMoveInSituationTest >> testPushingABoxOnGround [
 
 	| board position |
@@ -237,7 +238,7 @@ MygSkMoveInSituationTest >> testPushingABoxOnGround [
 	"Check that the board is updated, i.e., the player in the board should be at the player's position."
 ]
 
-{ #category : #'tests - pushing box' }
+{ #category : 'tests - pushing box' }
 MygSkMoveInSituationTest >> testPushingABoxOnTarget [
 
 	| board position |
@@ -260,7 +261,7 @@ MygSkMoveInSituationTest >> testPushingABoxOnTarget [
 	"Check that the board is updated, i.e., the player in the board should be at the player's position."
 ]
 
-{ #category : #'tests - pushing box' }
+{ #category : 'tests - pushing box' }
 MygSkMoveInSituationTest >> testPushingABoxOnWall [
 
 	| board position player box |
