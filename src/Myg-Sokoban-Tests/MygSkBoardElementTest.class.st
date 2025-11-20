@@ -41,6 +41,6 @@ MygSkBoardElementTest >> testInitialMoveCountDisplay [
 	boardElement := gameManager currentBoardElement.
 	
 	self assert: boardElement moveCountLabel isNotNil.
-	self assert: (boardElement moveCountLabel text asString) includesSubstring: 'Moves: 0'.
+	self assert: (((boardElement moveCountLabel children first) text asString) findString: 'Moves: 0') > 0.
 	space := boardElement space.
 ]

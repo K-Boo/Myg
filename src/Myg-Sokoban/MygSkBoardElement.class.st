@@ -33,7 +33,8 @@ Class {
 		'board',
 		'backgroundLayer',
 		'foregroundLayer',
-		'directionDict'
+		'directionDict',
+		'moveCountLabel'
 	],
 	#category : 'Myg-Sokoban-UI',
 	#package : 'Myg-Sokoban',
@@ -79,7 +80,10 @@ MygSkBoardElement >> board: aSkBoard [
 		c vertical fitContent ].
 	self
 		initializeBackgroundLayer;
-		initializeForegroundLayer
+		initializeForegroundLayer;
+		initializeMoveCountLabel.
+		
+	self addChild: self moveCountLabel.
 ]
 
 { #category : 'initialization' }
@@ -298,6 +302,30 @@ MygSkBoardElement >> initializeForegroundLayerPreview [
 ]
 
 { #category : 'initialization' }
+MygSkBoardElement >> initializeMoveCountLabel [
+   	| label container |
+   	label := BlTextElement new
+   		text: 'Moves: 0' asRopedText;
+   		yourself.
+   	"Configurer le style du label"
+   	label text fontSize: 16.
+   	label text fontName: 'Source Sans Pro Bold'.
+   	
+   	"Envelopper dans un conteneur avec fond et padding"
+   	container := BlElement new
+   		background: (BlBackground paint: Color lightGray);
+   		padding: (BlInsets all: 10);
+   		layout: BlFrameLayout new;
+   		constraintsDo: [ :c |
+   			c horizontal fitContent.
+   			c vertical fitContent ];
+   		addChild: label;
+   		yourself.
+   	
+   	self moveCountLabel: container
+]
+
+{ #category : 'initialization' }
 MygSkBoardElement >> manageEvent: anEvent [
 
 	| player moved direction neighborElement elements |
@@ -326,6 +354,16 @@ MygSkBoardElement >> manageEvent: anEvent [
 					 neighborElement resetAnimation.
 					 self updateElements: elements ]) ]
 		ifFalse: [ self updateElements: elements ]
+]
+
+{ #category : 'accessing' }
+MygSkBoardElement >> moveCountLabel [
+	^ moveCountLabel 
+]
+
+{ #category : 'accessing' }
+MygSkBoardElement >> moveCountLabel: aBlElement [
+   	moveCountLabel := aBlElement
 ]
 
 { #category : 'opening' }
