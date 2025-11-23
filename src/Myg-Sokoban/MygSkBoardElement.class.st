@@ -34,7 +34,8 @@ Class {
 		'backgroundLayer',
 		'foregroundLayer',
 		'directionDict',
-		'moveCountLabel'
+		'moveCountLabel',
+		'undoButton'
 	],
 	#category : 'Myg-Sokoban-UI',
 	#package : 'Myg-Sokoban',
@@ -79,11 +80,13 @@ MygSkBoardElement >> board: aSkBoard [
 		c horizontal matchParent.
 		c vertical fitContent ].
 	self
+		initializeUndoButton;
 		initializeBackgroundLayer;
 		initializeForegroundLayer;
 		initializeMoveCountLabel.
 		
 	self addChild: self moveCountLabel.
+	self addChild: self undoButton.
 ]
 
 { #category : 'initialization' }
@@ -326,6 +329,21 @@ MygSkBoardElement >> initializeMoveCountLabel [
 ]
 
 { #category : 'initialization' }
+MygSkBoardElement >> initializeUndoButton [ 
+
+	| button |
+	button := ToButton new.
+	button labelText: 'Annuler'.
+	button iconImage: (Smalltalk ui icons iconNamed: #smallUndo).
+	button constraintsDo: [ :c |
+		c frame horizontal alignRight.
+		c frame vertical alignTop.
+		c margin: (BlInsets all: 10) ].
+	self undoButton: button
+
+]
+
+{ #category : 'initialization' }
 MygSkBoardElement >> manageEvent: anEvent [
 
 	| player moved direction neighborElement elements |
@@ -388,6 +406,18 @@ MygSkBoardElement >> resetBoard [
 
 	self space close.
 	self board reset
+]
+
+{ #category : 'accessing' }
+MygSkBoardElement >> undoButton [ 
+	^ undoButton
+
+]
+
+{ #category : 'accessing' }
+MygSkBoardElement >> undoButton: aToButton [ 
+	undoButton := aToButton
+
 ]
 
 { #category : 'private' }
