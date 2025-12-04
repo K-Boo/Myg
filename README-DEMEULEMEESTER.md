@@ -16,3 +16,9 @@ Je pense utiliser la notion de DoubleDispatch sur l'acceptation des cibles/boite
 
 ## Etape 1 : Les tests (TDD)
 Je vais d'abord écrire des cas de tests afin de cibler ce que je dois developper par la suite. Je test que je peux assigner une couleur aux boites et aux cibles (testColorAssignment), que les cibles n'acceptent que les boites de leur couleur (testTargetAcceptsMatchingBox, testTargetRefusesDifferentBox) et que la partie est gagnée seulement si toutes les boites sont sur les cibles de bonne couleur (testBoardFinishedWithMatchingColors, testBoardNotFinishedWithMismatchingColors). Ces tests sont trouvables dans le package Myg-Sokoban-Tests/MygSkColorTests.
+
+## Etape 2 : Ajout de la notion de couleur Pour les Box et les Target
+On va déclarer la variable color dans la classe parente de MygSkTarget et MygSkBox : MygSkObject. L'héritage permettra d'appliquer la couleur aux cibles et aux boites en ne definissant qu'une seule fois les méthodes.
+
+## Etape 3 : Ajout de la logique de verification pour gagner une partie
+
