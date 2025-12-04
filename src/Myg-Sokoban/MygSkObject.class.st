@@ -27,6 +27,9 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : 'MygSkObject',
 	#superclass : 'MygAbstractBox',
+	#instVars : [
+		'color'
+	],
 	#category : 'Myg-Sokoban-Model',
 	#package : 'Myg-Sokoban',
 	#tag : 'Model'
@@ -67,6 +70,16 @@ MygSkObject >> bringIn: aSkMovable going: aDirection [
 			self board gameManager currentMoveCount + 1 ].
 	self board updatePositionOf: aSkMovable from: previousPosition.
 	^ true
+]
+
+{ #category : 'accessing' }
+MygSkObject >> color [
+  ^ color
+]
+
+{ #category : 'accessing' }
+MygSkObject >> color: aSymbol [ 
+	color := aSymbol
 ]
 
 { #category : 'accessing' }
