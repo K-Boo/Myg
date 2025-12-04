@@ -257,5 +257,5 @@ MygSkBoard >> updatePositionOf: aSkMovable from: previousPosition [
 
 { #category : 'accessing' }
 MygSkBoard >> width [
-	^ grid width
+	^ grid width 
 ]
