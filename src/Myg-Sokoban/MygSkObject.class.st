@@ -46,6 +46,12 @@ MygSkObject class >> textualMapCharacter [
 	^ $Z
 ]
 
+{ #category : 'testing' }
+MygSkObject >> acceptsBox: aBox [
+	"faux par défaut"
+	^ false
+]
+
 { #category : 'accessing' }
 MygSkObject >> backgroundRepresentation [
 	^ self subclassResponsibility
