@@ -12,7 +12,7 @@ Je vais implémenter une nouvelle fonctionnalité pour le jeud Sokoban et y intr
 
 4 - Affichage visuel
 
-Je pense utiliser la notion de DoubleDispatch sur l'acceptation des cibles/boites aini que le polymorphisme sur la méthode d'acceptation des boites (acceptsBox).
+Je pense utiliser la notion de DoubleDispatch sur l'acceptation des cibles/boites aini que le polymorphisme sur la méthode d'acceptation des boites (acceptsBox). Une petite notion de l'héritage sera aussi utiliser sur les objets du jeu.
 
 ## Etape 1 : Les tests (TDD)
 Je vais d'abord écrire des cas de tests afin de cibler ce que je dois developper par la suite. Je test que je peux assigner une couleur aux boites et aux cibles (testColorAssignment), que les cibles n'acceptent que les boites de leur couleur (testTargetAcceptsMatchingBox, testTargetRefusesDifferentBox) et que la partie est gagnée seulement si toutes les boites sont sur les cibles de bonne couleur (testBoardFinishedWithMatchingColors, testBoardNotFinishedWithMismatchingColors). Ces tests sont trouvables dans le package Myg-Sokoban-Tests/MygSkColorTests.
