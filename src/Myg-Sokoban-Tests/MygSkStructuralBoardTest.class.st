@@ -138,7 +138,7 @@ MygSkStructuralBoardTest >> testPrintOn [
 { #category : 'tests' }
 MygSkStructuralBoardTest >> testPrintOnOneLine [
 
-	| board |
+	| board|
 	board := MygSkBoard createWithBoard:
 		         ((MygLevelImporter
 			          fromString: '#@  #'
