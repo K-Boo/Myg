@@ -339,12 +339,15 @@ MygSkBoardElement >> initializeUndoButton [
 		c frame horizontal alignRight.
 		c frame vertical alignTop.
 		c margin: (BlInsets all: 10) ].
+	button clickAction: [ 
+		self board undo.
+		self refreshBoard ].
 	self undoButton: button
 
 ]
 
 { #category : 'initialization' }
-MygSkBoardElement >> manageEvent: anEvent [
+MygSkBoardElement >> manageEvent: anEvent [ 
 
 	| player moved direction neighborElement elements |
 	anEvent key name = #SPACE ifTrue: [ ^ self resetBoard ].
@@ -359,9 +362,7 @@ MygSkBoardElement >> manageEvent: anEvent [
 		            goingIn: direction.
 	neighborElement := elements second.
 	
-	moved := player move: direction.
-
-	
+	moved := self board movePlayer: direction.
 
 	(moved and: [ neighborElement box class = MygSkBox ])
 		ifTrue: [
@@ -371,7 +372,9 @@ MygSkBoardElement >> manageEvent: anEvent [
 			neighborElement addAnimation: (animation onFinishedDo: [
 					 neighborElement resetAnimation.
 					 self updateElements: elements ]) ]
-		ifFalse: [ self updateElements: elements ]
+		ifFalse: [ self updateElements: elements ].
+	self updateMoveCountLabel
+
 ]
 
 { #category : 'accessing' }
@@ -401,6 +404,21 @@ MygSkBoardElement >> openWithModel: aSkBoard [
 	space show
 ]
 
+{ #category : 'updating' }
+MygSkBoardElement >> refreshBoard [ 
+	self removeChild: foregroundLayer.
+	self initializeForegroundLayer.
+	
+	"Move buttons to front"
+	self removeChild: moveCountLabel.
+	self addChild: moveCountLabel.
+	self removeChild: undoButton.
+	self addChild: undoButton.
+	
+	self updateMoveCountLabel.
+
+]
+
 { #category : 'initialization' }
 MygSkBoardElement >> resetBoard [
 
@@ -424,4 +442,14 @@ MygSkBoardElement >> undoButton: aToButton [
 MygSkBoardElement >> updateElements: anOrderedCollection [
 
 	anOrderedCollection do: [ :each | each boxForForeground updateBackgroundColor ]
+]
+
+{ #category : 'updating' }
+MygSkBoardElement >> updateMoveCountLabel [ 
+	| text |
+	text := ('Moves: ', board gameManager currentMoveCount asString) asRopedText.
+	text fontSize: 16.
+	text fontName: 'Source Sans Pro Bold'.
+	moveCountLabel children first text: text.
+
 ]

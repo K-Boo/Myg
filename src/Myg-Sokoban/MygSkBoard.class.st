@@ -19,6 +19,7 @@ Class {
 		'player',
 		'boxes',
 		'ended',
+		'history',
 		'gameManager'
 	],
 	#category : 'Myg-Sokoban-Model',
@@ -178,13 +179,29 @@ MygSkBoard >> initialize [
 
 	super initialize.
 	ended := false.
-	boxes := OrderedCollection new
+	boxes := OrderedCollection new.
+	history := OrderedCollection new
 ]
 
 { #category : 'testing' }
 MygSkBoard >> isFinished [
 
 	^ self boxes allSatisfy: [ :each | each background isTarget ]
+]
+
+{ #category : 'move' }
+MygSkBoard >> movePlayer: aDirection [ 
+	| command result |
+	command := SkMoveCommand new
+		board: self;
+		player: self player;
+		direction: aDirection;
+		yourself.
+		
+	result := command execute.
+	history add: command.
+	^ result
+
 ]
 
 { #category : 'move' }
@@ -234,6 +251,18 @@ MygSkBoard >> setBoxes [
 MygSkBoard >> setPlayer [
 
 	player := grid contents detect: #isPlayer
+]
+
+{ #category : 'undo' }
+MygSkBoard >> undo [ 
+	history ifNotEmpty: [ 
+		history last undo.
+		history removeLast.
+		self gameManager ifNotNil: [ 
+			self gameManager currentMoveCount: self gameManager currentMoveCount - 2 
+		]
+	]
+
 ]
 
 { #category : 'move' }
