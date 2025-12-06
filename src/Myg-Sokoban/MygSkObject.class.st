@@ -83,6 +83,12 @@ MygSkObject >> configured [
 ]
 
 { #category : 'testing' }
+MygSkObject >> isBox [ 
+	^ false
+
+]
+
+{ #category : 'testing' }
 MygSkObject >> isMovable [ 
 
 	^ false
