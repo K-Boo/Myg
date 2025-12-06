@@ -174,6 +174,11 @@ MygSkBoard >> height [
 	^ grid height
 ]
 
+{ #category : 'accessing' }
+MygSkBoard >> history [ 
+	^ history 
+]
+
 { #category : 'initialization' }
 MygSkBoard >> initialize [
 
@@ -190,7 +195,7 @@ MygSkBoard >> isFinished [
 ]
 
 { #category : 'move' }
-MygSkBoard >> movePlayer: aDirection [ 
+MygSkBoard >> movePlayer: aDirection [
 	| command result |
 	command := SkMoveCommand new
 		board: self;
@@ -199,8 +204,9 @@ MygSkBoard >> movePlayer: aDirection [
 		yourself.
 		
 	result := command execute.
-	history add: command.
+	result ifTrue: [ history add: command ].
 	^ result
+
 
 ]
 
@@ -238,7 +244,8 @@ MygSkBoard >> printOn: aStream [
 { #category : 'initialization' }
 MygSkBoard >> reset [
 
-	self gameManager launchAgain
+	history removeAll.
+	gameManager ifNotNil: [ gameManager launchAgain ]
 ]
 
 { #category : 'initialization' }
@@ -258,11 +265,7 @@ MygSkBoard >> undo [
 	history ifNotEmpty: [ 
 		history last undo.
 		history removeLast.
-		self gameManager ifNotNil: [ 
-			self gameManager currentMoveCount: self gameManager currentMoveCount - 2 
-		]
 	]
-
 ]
 
 { #category : 'move' }

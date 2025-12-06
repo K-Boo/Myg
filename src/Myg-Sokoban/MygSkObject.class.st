@@ -62,9 +62,6 @@ MygSkObject >> bringIn: aSkMovable going: aDirection [
 	| previousPosition |
 	previousPosition := aSkMovable position.
 	aSkMovable basicPosition: self position.
-	self board gameManager ifNotNil: [
-		self board gameManager currentMoveCount:
-			self board gameManager currentMoveCount + 1 ].
 	self board updatePositionOf: aSkMovable from: previousPosition.
 	^ true
 ]
