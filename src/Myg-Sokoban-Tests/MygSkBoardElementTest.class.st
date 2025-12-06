@@ -44,3 +44,20 @@ MygSkBoardElementTest >> testInitialMoveCountDisplay [
 	self assert: (((boardElement moveCountLabel children first) text asString) findString: 'Moves: 0') > 0.
 	space := boardElement space.
 ]
+
+{ #category : 'tests' }
+MygSkBoardElementTest >> testUndoButtonDisplayed [ 
+	"context: Le jeu est lancé avec un plateau simple"
+	| string |
+	string := '#@$ .#'.
+	gameManager := MygSkGameManager new.	
+	gameManager launchFromString: string.
+	boardElement := gameManager currentBoardElement.
+	
+	"trigger: (Pas d'action spécifique, juste l'initialisation)"
+	
+	"assert-check: Le bouton 'Annuler' doit être présent et visible"
+	self assert: boardElement undoButton isNotNil.
+	self assert: boardElement undoButton labelText equals: 'Annuler'.
+	space := boardElement space.
+]
