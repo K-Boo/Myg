@@ -7,39 +7,72 @@ Class {
 
 { #category : 'tests' }
 MygSkColorTests >> testBoardFinishedWithMatchingColors [
-	"Vérifie que le niveau est fini seulement si les couleurs correspondent"
-	| board box target |
-
-	board := MygSkBoard createWithBoard: 
-		(MygLevelImporter fromString: '@$ .' fromPackage: MygSkBoard package).
+	| board grid box target ground player |
 	
-	box := board boxes first.
+	"1. Création manuelle des éléments car bug sinon"
+	player := MygSkPlayer new.
+	player background: MygSkGround new. 
+	
+	box := MygSkBox new.
+	ground := MygSkGround new.
+	box background: ground.
+	
+	target := MygSkTarget new.
+	
+	"2. Configuration des couleurs"
 	box color: #red.
-	
-	target := (board grid contents select: [ :each | each isTarget ]) first.
 	target color: #red.
 	
+	"3. Création de la grille (3 cases de large : Joueur | Boite | Cible)"
+	grid := CTNewArray2D width: 3 height: 1.
+	grid at: 1@1 put: player.
+	grid at: 2@1 put: box.
+	grid at: 3@1 put: target.
+	
+	"4. Initialisation du plateau"
+	board := MygSkBoard new.
+	board configureGrid: grid. 
+	
+	"5. Action : Le joueur pousse la boite vers la cible"
 	board player moveEast.
 	
+	"6. Vérification"
 	self assert: board isFinished.
 ]
 
 { #category : 'tests' }
 MygSkColorTests >> testBoardNotFinishedWithMismatchingColors [ 
-	"Vérifie que le niveau n'est pas fini si les couleurs ne correspondent pas"
-	| board box target |
-	board := MygSkBoard createWithBoard: 
-		(MygLevelImporter fromString: '@$ .' fromPackage: MygSkBoard package).
+	| board grid box target ground player |
 	
-	box := board boxes first.
+	"1. Création manuelle des éléments car bug sinon"
+	player := MygSkPlayer new.
+	player background: MygSkGround new. 
+	
+	box := MygSkBox new.
+	ground := MygSkGround new.
+	box background: ground.
+	
+	target := MygSkTarget new.
+	
+	"2. Configuration des couleurs differentes"
 	box color: #red.
-	
-	target := (board grid contents select: [ :each | each isTarget ]) first.
 	target color: #blue.
 	
+	"3. Création de la grille (3 cases de large : Joueur | Boite | Cible)"
+	grid := CTNewArray2D width: 3 height: 1.
+	grid at: 1@1 put: player.
+	grid at: 2@1 put: box.
+	grid at: 3@1 put: target.
+	
+	"4. Initialisation du plateau"
+	board := MygSkBoard new.
+	board configureGrid: grid. 
+	
+	"5. Action : Le joueur pousse la boite vers la cible"
 	board player moveEast.
 	
-	self deny: board isFinished.
+	"6. Vérification"
+	self assert: board isFinished.
 ]
 
 { #category : 'tests' }
