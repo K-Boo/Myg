@@ -7,11 +7,12 @@ Class {
 
 { #category : 'tests' }
 MygSkColorTests >> testBoardFinishedWithMatchingColors [
+	"Vérifie que le niveau est fini si les couleurs correspondent"
 	| board grid box target ground player |
 	
 	"1. Création manuelle des éléments car bug sinon"
 	player := MygSkPlayer new.
-	player background: MygSkGround new. 
+	player background: MygSkGround new.
 	
 	box := MygSkBox new.
 	ground := MygSkGround new.
@@ -31,9 +32,9 @@ MygSkColorTests >> testBoardFinishedWithMatchingColors [
 	
 	"4. Initialisation du plateau"
 	board := MygSkBoard new.
-	board configureGrid: grid. 
+	board configureGrid: grid.
 	
-	"5. Action : Le joueur pousse la boite vers la cible"
+	"5. Action : Le joueur pousse la boite vers la cible)"
 	board player moveEast.
 	
 	"6. Vérification"
@@ -42,11 +43,12 @@ MygSkColorTests >> testBoardFinishedWithMatchingColors [
 
 { #category : 'tests' }
 MygSkColorTests >> testBoardNotFinishedWithMismatchingColors [ 
+	"Vérifie que le niveau n'est pas fini si les couleurs ne correspondent pas"
 	| board grid box target ground player |
 	
 	"1. Création manuelle des éléments car bug sinon"
 	player := MygSkPlayer new.
-	player background: MygSkGround new. 
+	player background: MygSkGround new.
 	
 	box := MygSkBox new.
 	ground := MygSkGround new.
@@ -66,9 +68,9 @@ MygSkColorTests >> testBoardNotFinishedWithMismatchingColors [
 	
 	"4. Initialisation du plateau"
 	board := MygSkBoard new.
-	board configureGrid: grid. 
+	board configureGrid: grid.
 	
-	"5. Action : Le joueur pousse la boite vers la cible"
+	"5. Action : Le joueur pousse la boite vers la cible)"
 	board player moveEast.
 	
 	"6. Vérification"
