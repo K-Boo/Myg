@@ -92,6 +92,48 @@ MygSkColorTests >> testColorAssignment [
 ]
 
 { #category : 'tests' }
+MygSkColorTests >> testParsingAssignsCorrectColors [
+	"Vérifie que les 6 nouveaux caractères (R, r, B, b, G, g) sont correctement convertis en objets colorés."
+	| board redBox redTarget blueBox blueTarget greenBox greenTarget |
+	
+	board := MygSkBoard createWithBoard: (MygLevelImporter fromString: 
+'#######' , String cr ,
+'#@ R B G #' , String cr ,
+'# r b g #' , String cr ,
+'#######' fromPackage: MygSkBoard package).
+	
+	"recuperation des boites"
+	redBox := board boxes detect: [ :e | e color = #red ] ifNone: [ nil ].
+	blueBox := board boxes detect: [ :e | e color = #blue ] ifNone: [ nil ].
+	greenBox := board boxes detect: [ :e | e color = #green ] ifNone: [ nil ].
+	
+	"récupération des cibles "
+	redTarget := (board grid contents select: [ :e | e isTarget and: [ e color = #red ] ]) first.
+	blueTarget := (board grid contents select: [ :e | e isTarget and: [ e color = #blue ] ]) first.
+	greenTarget := (board grid contents select: [ :e | e isTarget and: [ e color = #green ] ]) first.
+
+	"verif des 6 elements"
+	"Rouge"
+	self assert: redBox class equals: MygSkBox.
+	self assert: redBox color equals: #red.
+	self assert: redTarget class equals: MygSkTarget.
+	self assert: redTarget color equals: #red.
+
+	"Bleu"
+	self assert: blueBox class equals: MygSkBox.
+	self assert: blueBox color equals: #blue.
+	self assert: blueTarget class equals: MygSkTarget.
+	self assert: blueTarget color equals: #blue.
+
+	"Vert"
+	self assert: greenBox class equals: MygSkBox.
+	self assert: greenBox color equals: #green.
+	self assert: greenTarget class equals: MygSkTarget.
+	self assert: greenTarget color equals: #green.
+
+]
+
+{ #category : 'tests' }
 MygSkColorTests >> testTargetAcceptsMatchingBox [
 	"Vérifie que la cible accepte une boite de la même couleur"
 	| box target |
