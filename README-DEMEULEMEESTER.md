@@ -80,5 +80,9 @@ J'ai modifié le niveau 9 de Loma pour un niveau plus simple (dans MygSkGameMana
 ```
 Cela donne le niveau suivant :
 
+![exemple](exempleGame.png)
 
 Cela permet de tester ma fonctionnalité mais aussi celles de mes collegues (compteur de mouvement et bouton "Annulé") ainsi que de faire une démonstration.
+
+## Conclusion
+L'ajout de la nouvelle fonctionnalité est opérationnel, il m'aura permis de travailler la compréhenssion de code, le double-dispatch, le TDD et l'affichage visuel. Je trouve que l'ajout des couleurs rend le jeu plus compliqué mais il se groupe bien avec les autres fonctionnalités developpées par le groupe (compteur de mouvement et bouton "Annulé").
