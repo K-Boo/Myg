@@ -86,6 +86,30 @@ MygSkBoard >> asciiString [
 
 ]
 
+{ #category : 'initialization' }
+MygSkBoard >> assignBalancedColors [
+	"Distribue les couleurs (Rouge, Bleu, Vert) de façon équilibrée."
+	| targets colors availableColors |
+	
+	availableColors := { #red . #blue . #green }.
+	
+	targets := grid contents select: [ :e | e isTarget ].
+	
+	"on verifie qu'on a bien le meme nombre de boites et cibles"
+	(boxes size = targets size) ifFalse: [ ^ self ].
+	
+	"1. On génère une couleur pour chaque boîte"
+	colors := boxes collect: [ :each | availableColors atRandom ].
+	
+	"2. On applique aux boites"
+	boxes with: colors do: [ :box :c | box color: c ].
+	
+	colors := colors shuffled.
+	
+	"4. On applique aux cibles"
+	targets with: colors do: [ :target :c | target color: c ].
+]
+
 { #category : 'low level access' }
 MygSkBoard >> at: anInteger at: anInteger2 [
 
@@ -183,10 +207,10 @@ MygSkBoard >> initialize [
 
 { #category : 'testing' }
 MygSkBoard >> isFinished [
-	"Le jeu est fini si toutes les boîtes sont acceptées par la case sur laquelle elles se trouvent."
-	
+	"Le niveau est fini si chaque boîte est sur une cible qui l'accepte"
 	^ self boxes allSatisfy: [ :each |
-		each background acceptsBox: each ]
+		each background isTarget and: [ each background acceptsBox: each ]
+	]
 ]
 
 { #category : 'move' }
