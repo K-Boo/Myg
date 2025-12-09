@@ -46,6 +46,30 @@ MygSkBoardElementTest >> testInitialMoveCountDisplay [
 ]
 
 { #category : 'tests' }
+MygSkBoardElementTest >> testMoveCountUpdatesOnMove [
+	| string |
+	string := '#@$ .#'.
+	gameManager := MygSkGameManager new.
+	gameManager launchFromString: string.
+	boardElement := gameManager currentBoardElement.
+	
+	"Vérifier l'état initial"
+	self assert: (((boardElement moveCountLabel children first) text asString) findString: 'Moves: 0') > 0.
+	
+	"Effectuer un mouvement valide (vers l'est)"
+	boardElement board player moveEast.
+	boardElement manageEvent: (KeyboardEvent new key: (KeyboardKey named: #RIGHT)).
+	
+	"Attendre la mise à jour de l'interface"
+	BlSpace pulseUntilEmptyTaskQueue: boardElement space timeout: 200 milliSeconds.
+	
+	"Vérifier que le compteur a été mis à jour"
+	self assert: (((boardElement moveCountLabel children first) text asString) findString: 'Moves: 1') > 0.
+	
+	space := boardElement space.
+]
+
+{ #category : 'tests' }
 MygSkBoardElementTest >> testUndoButtonDisplayed [ 
 	"context: Le jeu est lancé avec un plateau simple"
 	| string |
