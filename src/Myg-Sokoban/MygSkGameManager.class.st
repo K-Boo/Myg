@@ -7854,6 +7854,11 @@ MygSkGameManager >> currentMoveCount: aNumber [
 	currentMoveCount:= aNumber 
 ]
 
+{ #category : 'as yet unclassified' }
+MygSkGameManager >> incrementMoveCount [
+   	currentMoveCount := currentMoveCount + 1
+]
+
 { #category : 'initialization' }
 MygSkGameManager >> initialize [
 

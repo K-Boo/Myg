@@ -16,8 +16,13 @@ MygSkBoardElementTest >> setUp [
 	super setUp.
 	space := nil.
 	boardElement := nil.
-	gameManager := nil.
-	board := nil
+	board := nil.
+	
+	gameManager := MygSkGameManager new.
+	"Initialiser un dictionnaire de paquets factice pour éviter les erreurs dans registerLevel"
+	gameManager packDictionary: (Dictionary new
+		at: 'test' put: Dictionary new;
+		yourself).
 ]
 
 { #category : 'running' }
@@ -49,16 +54,14 @@ MygSkBoardElementTest >> testInitialMoveCountDisplay [
 MygSkBoardElementTest >> testMoveCountUpdatesOnMove [
 	| string |
 	string := '#@$ .#'.
-	gameManager := MygSkGameManager new.
-	gameManager launchFromString: string.
+	gameManager launchFromString: string inDictionary: 'test' at: 1.
 	boardElement := gameManager currentBoardElement.
 	
 	"Vérifier l'état initial"
 	self assert: (((boardElement moveCountLabel children first) text asString) findString: 'Moves: 0') > 0.
 	
 	"Effectuer un mouvement valide (vers l'est)"
-	boardElement board player moveEast.
-	boardElement manageEvent: (KeyboardEvent new key: (KeyboardKey named: #RIGHT)).
+	boardElement manageEvent: (BlKeyDownEvent new key: KeyboardKey right).
 	
 	"Attendre la mise à jour de l'interface"
 	BlSpace pulseUntilEmptyTaskQueue: boardElement space timeout: 200 milliSeconds.

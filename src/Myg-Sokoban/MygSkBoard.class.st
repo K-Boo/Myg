@@ -204,7 +204,9 @@ MygSkBoard >> movePlayer: aDirection [
 		yourself.
 		
 	result := command execute.
-	result ifTrue: [ history add: command ].
+	result ifTrue: [ 
+		history add: command.
+		gameManager ifNotNil: [ gameManager incrementMoveCount ] ].
 	^ result
 
 
