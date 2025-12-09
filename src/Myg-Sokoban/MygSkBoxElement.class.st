@@ -194,8 +194,37 @@ MygSkBoxElement >> box [
 
 { #category : 'accessing' }
 MygSkBoxElement >> box: aSkElement [
-
+   | dot |
+	"pour eviter que les couleurs restent sur les cases"
+	self removeChildren.
+	self border: BlBorder empty.
 	box := aSkElement.
+	"si objet vide, pas besoin de colorier"
+	box ifNil: [ ^ self ].
+	box color ifNil: [ ^ self ].
+	
+	"si cible, on met ne bordure colorée"
+	(box isTarget ) ifTrue: [ 
+		(box color = #red) ifTrue: [ self border: (BlBorder paint: Color red width: 4) ].
+		(box color = #blue) ifTrue: [ self border: (BlBorder paint: Color blue width: 4) ].
+		(box color = #green) ifTrue: [ self border: (BlBorder paint: Color green width: 4) ].
+		^ self "On a fini pour la cible"
+	].
+
+	"si boite, on met une pastille colorée"
+	dot := BlElement new.
+	dot geometry: BlCircleGeometry new.
+	dot size: 22@22. 
+	
+	dot constraintsDo: [ :c | 
+		c frame horizontal alignCenter.
+		c frame vertical alignCenter ].
+	
+	(box color = #red) ifTrue: [ dot background: Color red ].
+	(box color = #blue) ifTrue: [ dot background: Color blue ].
+	(box color = #green) ifTrue: [ dot background: Color green ].
+	
+	self addChild: dot.
 ]
 
 { #category : 'as yet unclassified' }

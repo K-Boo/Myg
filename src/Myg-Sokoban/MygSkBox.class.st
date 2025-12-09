@@ -36,10 +36,15 @@ MygSkBox class >> textualMapCharacter [
 
 { #category : 'accessing' }
 MygSkBox >> backgroundRepresentation [
+    "Retourne l'image sombre SI on est sur une cible ET que les couleurs correspondent"
+    | isMatch |
 
-	^ self background class = MygSkTarget
-		  ifTrue: [ MygSkBoxElement boxIconDarker ]
-		  ifFalse: [ MygSkBoxElement boxIcon ]
+    isMatch := (self background color isNil) 
+                or: [ self background color = self color ].
+
+    ^ (isMatch and: (self background isTarget))
+        ifTrue: [ MygSkBoxElement boxIconDarker ]
+        ifFalse: [ MygSkBoxElement boxIcon ]
 ]
 
 { #category : 'move' }

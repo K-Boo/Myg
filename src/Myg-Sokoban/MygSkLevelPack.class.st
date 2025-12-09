@@ -60,6 +60,20 @@ MygSkLevelPack >> initialize [
 ]
 
 { #category : 'accessing' }
+MygSkLevelPack >> levelDemo [
+	^ '
+###########
+#         #
+# @ $  .  #
+#         #
+#   $  .  #
+#         #
+#   $  .  #
+#         #
+###########'
+]
+
+{ #category : 'accessing' }
 MygSkLevelPack >> levelDictionary [
 
 	^ levelDictionary

@@ -53,6 +53,7 @@ MygSkGameManager class >> importFromString: aString [
 	tmp := tmp collect: [ :each | each configured ].
 	tmp width < tmp height ifTrue: [ tmp := tmp rotateLeft ].
 	^ tmp
+
 ]
 
 { #category : 'mazes' }
@@ -128,12 +129,16 @@ MygSkGameManager class >> mazesLoma [
 #   ####
 #  ##
 ####';
-		  at: 9 put: '####
-#@ ###
-# $$ ###
-# $ .  #
-## ..  #
- #######';
+		  at: 9 put: '#########
+#       #
+# @ $ . #
+#   $ . #
+#   $ . #
+#   $ . #
+#   $ . #
+#   $ . #
+#       #
+#########';
 		  yourself
 ]
 

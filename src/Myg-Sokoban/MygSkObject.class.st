@@ -27,6 +27,9 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : 'MygSkObject',
 	#superclass : 'MygAbstractBox',
+	#instVars : [
+		'color'
+	],
 	#category : 'Myg-Sokoban-Model',
 	#package : 'Myg-Sokoban',
 	#tag : 'Model'
@@ -41,6 +44,12 @@ MygSkObject class >> configured [
 { #category : 'default encoding' }
 MygSkObject class >> textualMapCharacter [
 	^ $Z
+]
+
+{ #category : 'testing' }
+MygSkObject >> acceptsBox: aBox [
+	"faux par défaut"
+	^ false
 ]
 
 { #category : 'accessing' }
@@ -64,6 +73,16 @@ MygSkObject >> bringIn: aSkMovable going: aDirection [
 	aSkMovable basicPosition: self position.
 	self board updatePositionOf: aSkMovable from: previousPosition.
 	^ true
+]
+
+{ #category : 'accessing' }
+MygSkObject >> color [
+  ^ color
+]
+
+{ #category : 'accessing' }
+MygSkObject >> color: aSymbol [ 
+	color := aSymbol
 ]
 
 { #category : 'accessing' }
