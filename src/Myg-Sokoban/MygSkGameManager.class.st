@@ -7860,6 +7860,11 @@ MygSkGameManager >> currentMoveCount: aNumber [
 ]
 
 { #category : 'as yet unclassified' }
+MygSkGameManager >> decrementMoveCount [
+	currentMoveCount := currentMoveCount - 1
+]
+
+{ #category : 'as yet unclassified' }
 MygSkGameManager >> incrementMoveCount [
    	currentMoveCount := currentMoveCount + 1
 ]

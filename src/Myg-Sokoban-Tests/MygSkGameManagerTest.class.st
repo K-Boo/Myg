@@ -177,3 +177,27 @@ MygSkGameManagerTest >> testRegisterLevelWithWorseMoveCount [
 	space := manager currentBoardElement space.
 
 ]
+
+{ #category : 'tests' }
+MygSkGameManagerTest >> testUndoDecrementsMoveCount [
+	| string manager boardElement |
+	string := '#@$ .#'.
+	manager := MygSkGameManager new.
+	manager launchFromString: string.
+	boardElement := manager currentBoardElement.
+
+	"1. Vérifier état initial"
+	self assert: manager currentMoveCount equals: 0.
+
+	"2. Effectuer un mouvement via le board (pour déclencher l'historique et le compteur)"
+	boardElement board movePlayer: CpDirection east.
+	self assert: manager currentMoveCount equals: 1.
+
+	"3. Faire un undo"
+	boardElement board undo.
+
+	"4. Vérifier que le compteur est décrémenté"
+	self assert: manager currentMoveCount equals: 0.
+	
+	space := manager currentBoardElement space.
+]

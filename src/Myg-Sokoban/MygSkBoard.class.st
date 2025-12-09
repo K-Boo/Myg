@@ -294,6 +294,7 @@ MygSkBoard >> undo [
 	history ifNotEmpty: [ 
 		history last undo.
 		history removeLast.
+		gameManager ifNotNil: [ gameManager decrementMoveCount ]
 	]
 ]
 
