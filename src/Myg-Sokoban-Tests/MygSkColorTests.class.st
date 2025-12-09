@@ -14,12 +14,14 @@ MygSkColorTests >> testBalancedColorsAssignment [
 	manager := MygSkGameManager new.
 	manager launchFromString: 
 '#######' , String cr ,
+'#     #' , String cr ,
 '#@ $ .#' , String cr ,
 '#  $ .#' , String cr ,
 '#  $ .#' , String cr ,
 '#  $ .#' , String cr ,
 '#  $ .#' , String cr ,
 '#  $ .#' , String cr ,
+'#     #' , String cr ,
 '#######'.
 	board := manager currentBoardElement board.
 	

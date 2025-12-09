@@ -98,15 +98,14 @@ MygSkBoard >> assignBalancedColors [
 	"on verifie qu'on a bien le meme nombre de boites et cibles"
 	(boxes size = targets size) ifFalse: [ ^ self ].
 	
-	"1. On génère une couleur pour chaque boîte"
+	"genere les couleurs"
 	colors := boxes collect: [ :each | availableColors atRandom ].
 	
-	"2. On applique aux boites"
+	"application sur les boites"
 	boxes with: colors do: [ :box :c | box color: c ].
 	
+	"application sur les cibles"
 	colors := colors shuffled.
-	
-	"4. On applique aux cibles"
 	targets with: colors do: [ :target :c | target color: c ].
 ]
 
@@ -158,7 +157,7 @@ MygSkBoard >> configureGrid: aCTNewArray2D [
 	self
 		setBoxes;
 		setPlayer.
-	"on ajoue la distribution des couleurs"
+	"ajout de la distribution des couleurs"
 	self assignBalancedColors.
 ]
 

@@ -39,7 +39,7 @@ MygSkTarget >> acceptsBox: aBox [
 	"Si la cible n'a pas de couleur c'est une cible classique qui accepte tout"
 	self color ifNil: [ ^ true ].
 	aBox color ifNil: [ ^ true ].
-	"sinon on compare la couleur de la cible avec celle de la boite"
+	"sinon comparaison de la couleur de la cible avec celle de la boite"
 	^ self color = aBox color
 ]
 
