@@ -6,6 +6,49 @@ Class {
 }
 
 { #category : 'tests' }
+MygSkColorTests >> testBalancedColorsAssignment [
+	"Vérifie que la distribution des couleurs est équilibrée en lançant une vraie partie via le GameManager."
+	| manager board boxes targets redBoxes redTargets blueBoxes blueTargets greenBoxes greenTargets |
+	
+
+	manager := MygSkGameManager new.
+	manager launchFromString: 
+'#######' , String cr ,
+'#@ $ .#' , String cr ,
+'#  $ .#' , String cr ,
+'#  $ .#' , String cr ,
+'#  $ .#' , String cr ,
+'#  $ .#' , String cr ,
+'#  $ .#' , String cr ,
+'#######'.
+	board := manager currentBoardElement board.
+	
+	"La méthode assignBalancedColors a dû être appelée automatiquement lors de l'initialisation du plateau"
+	
+	boxes := board boxes.
+	targets := board grid contents select: [ :e | e isTarget ].
+	
+	"on verifie que les boites et cibles sont bien rouges vertes ou bleues"
+	boxes do: [ :b | self assert: ({#red. #blue. #green} includes: b color) ].
+	targets do: [ :t | self assert: ({#red. #blue. #green} includes: t color) ].
+	
+	"on verifie qu'il y a le même nombre de cible/boites par couleur"
+	redBoxes := boxes count: [ :b | b color = #red ].
+	redTargets := targets count: [ :t | t color = #red ].
+	
+	blueBoxes := boxes count: [ :b | b color = #blue ].
+	blueTargets := targets count: [ :t | t color = #blue ].
+	
+	greenBoxes := boxes count: [ :b | b color = #green ].
+	greenTargets := targets count: [ :t | t color = #green ].
+	
+	"5. ASSERTIONS D'ÉQUILIBRE"
+	self assert: redBoxes equals: redTargets.
+	self assert: blueBoxes equals: blueTargets.
+	self assert: greenBoxes equals: greenTargets.
+]
+
+{ #category : 'tests' }
 MygSkColorTests >> testBoardFinishedWithMatchingColors [
 	"Vérifie que le niveau est fini si les couleurs correspondent"
 	| board grid box target ground player |
@@ -89,48 +132,6 @@ MygSkColorTests >> testColorAssignment [
 	
 	self assert: box color equals: #red.
 	self assert: target color equals: #blue.
-]
-
-{ #category : 'tests' }
-MygSkColorTests >> testParsingAssignsCorrectColors [
-	"Vérifie que les 6 nouveaux caractères (R, r, B, b, G, g) sont correctement convertis en objets colorés."
-	| board redBox redTarget blueBox blueTarget greenBox greenTarget |
-	
-	board := MygSkBoard createWithBoard: (MygLevelImporter fromString: 
-'#######' , String cr ,
-'#@ R B G #' , String cr ,
-'# r b g #' , String cr ,
-'#######' fromPackage: MygSkBoard package).
-	
-	"recuperation des boites"
-	redBox := board boxes detect: [ :e | e color = #red ] ifNone: [ nil ].
-	blueBox := board boxes detect: [ :e | e color = #blue ] ifNone: [ nil ].
-	greenBox := board boxes detect: [ :e | e color = #green ] ifNone: [ nil ].
-	
-	"récupération des cibles "
-	redTarget := (board grid contents select: [ :e | e isTarget and: [ e color = #red ] ]) first.
-	blueTarget := (board grid contents select: [ :e | e isTarget and: [ e color = #blue ] ]) first.
-	greenTarget := (board grid contents select: [ :e | e isTarget and: [ e color = #green ] ]) first.
-
-	"verif des 6 elements"
-	"Rouge"
-	self assert: redBox class equals: MygSkBox.
-	self assert: redBox color equals: #red.
-	self assert: redTarget class equals: MygSkTarget.
-	self assert: redTarget color equals: #red.
-
-	"Bleu"
-	self assert: blueBox class equals: MygSkBox.
-	self assert: blueBox color equals: #blue.
-	self assert: blueTarget class equals: MygSkTarget.
-	self assert: blueTarget color equals: #blue.
-
-	"Vert"
-	self assert: greenBox class equals: MygSkBox.
-	self assert: greenBox color equals: #green.
-	self assert: greenTarget class equals: MygSkTarget.
-	self assert: greenTarget color equals: #green.
-
 ]
 
 { #category : 'tests' }

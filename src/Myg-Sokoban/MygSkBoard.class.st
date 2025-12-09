@@ -183,8 +183,10 @@ MygSkBoard >> initialize [
 
 { #category : 'testing' }
 MygSkBoard >> isFinished [
-
-	^ self boxes allSatisfy: [ :each | each background isTarget ]
+	"Le jeu est fini si toutes les boîtes sont acceptées par la case sur laquelle elles se trouvent."
+	
+	^ self boxes allSatisfy: [ :each |
+		each background acceptsBox: each ]
 ]
 
 { #category : 'move' }
