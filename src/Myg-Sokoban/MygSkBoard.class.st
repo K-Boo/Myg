@@ -151,13 +151,15 @@ MygSkBoard >> boxes: aCollection [
 	boxes := aCollection 
 ]
 
-{ #category : 'accessing' }
+{ #category : 'public api - configure' }
 MygSkBoard >> configureGrid: aCTNewArray2D [
 
 	super configureGrid: aCTNewArray2D.
 	self
 		setBoxes;
-		setPlayer
+		setPlayer.
+	"on ajoue la distribution des couleurs"
+	self assignBalancedColors.
 ]
 
 { #category : 'building' }
