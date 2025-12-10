@@ -8,7 +8,7 @@ Load a stable version of Myg with the following snippet, in Pharo 11:
 
 ```Smalltalk
 Metacello new
-	repository: 'github://Ducasse/Myg:v1.0.3/src';
+	repository: 'github://K-Boo/Myg';
 	baseline: 'Myg';
 	load.
 ```
@@ -17,37 +17,16 @@ For development, load master branch:
 
 ```Smalltalk
 Metacello new
-	repository: 'github://Ducasse/Myg';
+	repository: 'github://K-Boo/Myg';
 	baseline: 'Myg';
 	onConflictUseLoaded;
 	load.
 ```
 
 
-## Playing Games
+## Playing Sokoban
 
-There are currently 5 games in Myg :
-
-- MineSweeper
-- Takuzu
-- Sokoban
-- Memory
-- SameGame
-
-You can play each game by executing these snippets :
-
-```Smalltalk
-MineSweeper open
-```
-```Smalltalk
-Takuzu open
-```
 ```Smalltalk
 Sokoban open
 ```
-```Smalltalk
-Memory open
-```
-```Smalltalk
-SameGame open
-```
+
