@@ -42,7 +42,7 @@ Pour gérer l'historique et l'annulation, j'ai mis en place le **Design Pattern 
 
 Voici le diagramme UML de ma solution :
 
-![Diagramme UML](UMLHEDDI.jpg)
+![Diagramme UML](UMLHEDDI.png)
 
 ### Détails de l'implémentation
 
